@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
 * Студент: [Илья Кузьменко](https://up.htmlacademy.ru/react-individual/3/user/550381).
-* Наставник: `Алексей Хабиров`.
+* Наставник: [Алексей Хабиров](https://htmlacademy.ru/profile/alex_khab).
 
 ---
 
