@@ -1,3 +1,15 @@
-export const Setting = {
-  citiesCardCount: 5,
-} as const;
+export const cities: string[] = [
+  'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf'
+];
+
+export const placesOptions: string[] = [
+  'Popular',
+  'Price: low to high',
+  'Price: high to low',
+  'Top rated first'
+];
