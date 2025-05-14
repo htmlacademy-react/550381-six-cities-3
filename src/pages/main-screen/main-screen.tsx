@@ -26,12 +26,16 @@ function MainScreen({citiesCardCount}: MainScreenProps): JSX.Element {
 
               <div className="cities__places-list places__list tabs__content">
                 {CitiesCardData.map((offer) => (
-                  <CitiesCard key={offer.id}
-                    title={offer.title}
-                    type={offer.type}
-                    price={offer.price}
-                    previewImage={offer.previewImage}
-                  />
+                  <article className="cities__card place-card" key={offer.id}>
+                    <CitiesCard
+                      title={offer.title}
+                      type={offer.type}
+                      price={offer.price}
+                      previewImage={offer.previewImage}
+                      isPremium={offer.isPremium}
+                      isFavorite={offer.isFavorite}
+                    />
+                  </article>
                 ))}
               </div>
 

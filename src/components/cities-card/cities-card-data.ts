@@ -4,8 +4,8 @@ export type CitiesCardDataType = {
   type: string;
   price: number;
   cityName?: string;
-  isFavorite?: boolean;
-  isPremium?: boolean;
+  isFavorite: boolean;
+  isPremium: boolean;
   rating?: number;
   previewImage: string;
 };
@@ -18,7 +18,7 @@ export const CitiesCardData: CitiesCardDataType[] = [
     price: 227,
     previewImage: 'https://15.design.htmlacademy.pro/static/hotel/3.jpg',
     cityName: 'Paris',
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.1
   },
