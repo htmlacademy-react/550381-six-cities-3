@@ -1,19 +1,10 @@
-import { CitiesCardDataType } from './cities-card-data';
+import { TOfferCardData } from './offer-card-data';
+import Badge from '../badge/badge';
 
-
-function PremiumMark(): JSX.Element {
+function OfferCard({title, type, price, previewImage, isPremium, isFavorite}: TOfferCardData): JSX.Element {
   return (
-    <div className="place-card__mark">
-      <span>Premium</span>
-    </div>
-  );
-}
-
-
-function CitiesCard({title, type, price, previewImage, isPremium, isFavorite}: CitiesCardDataType): JSX.Element {
-  return (
-    <>
-      {isPremium && <PremiumMark />}
+    <article className="cities__card place-card">
+      {isPremium && <Badge text='Premium' className='place-card__mark' />}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
@@ -43,8 +34,8 @@ function CitiesCard({title, type, price, previewImage, isPremium, isFavorite}: C
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
-    </>
+    </article>
   );
 }
 
-export default CitiesCard;
+export default OfferCard;

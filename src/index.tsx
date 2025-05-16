@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/app/app';
-import { CitiesCardData } from './components/cities-card/cities-card-data';
+import App from './app';
+import { OfferCardData } from './components/offer-card/offer-card-data';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -9,6 +9,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App citiesCardCount={CitiesCardData.length}/>
+    <App offerCardCount={OfferCardData.length}/>
   </React.StrictMode>
 );

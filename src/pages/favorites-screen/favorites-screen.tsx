@@ -1,12 +1,11 @@
 import Header from '../../components/header/header';
-import CitiesCard from '../../components/cities-card/cities-card';
-import { CitiesCardData } from '../../components/cities-card/cities-card-data';
+import OfferCard from '../../components/offer-card/offer-card';
+import { OfferCardData } from '../../components/offer-card/offer-card-data';
 
 function FavoritesScreen(): JSX.Element {
   return (
     <div className="page">
       <Header />
-
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
@@ -21,50 +20,17 @@ function FavoritesScreen(): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {CitiesCardData.slice(0, 2).map((offer) => (
-                    <article className="favorites__card place-card" key={offer.id}>
-                      <CitiesCard
-                        title={offer.title}
-                        type={offer.type}
-                        price={offer.price}
-                        previewImage={offer.previewImage}
-                        isPremium={offer.isPremium}
-                        isFavorite={offer.isFavorite}
-                      />
-                    </article>
+                  {OfferCardData.slice(0, 2).map((offer) => (
+                    <OfferCard
+                      key={offer.id}
+                      title={offer.title}
+                      type={offer.type}
+                      price={offer.price}
+                      previewImage={offer.previewImage}
+                      isPremium={offer.isPremium}
+                      isFavorite={offer.isFavorite}
+                    />
                   ))}
-
-                  <article className="favorites__card place-card">
-                    <div className="favorites__image-wrapper place-card__image-wrapper">
-                      <a href="#">
-                        <img className="place-card__image" src="img/room-small.jpg" width="150" height="110" alt="Place image"/>
-                      </a>
-                    </div>
-                    <div className="favorites__card-info place-card__info">
-                      <div className="place-card__price-wrapper">
-                        <div className="place-card__price">
-                          <b className="place-card__price-value">&euro;80</b>
-                          <span className="place-card__price-text">&#47;&nbsp;night</span>
-                        </div>
-                        <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-                          <svg className="place-card__bookmark-icon" width="18" height="19">
-                            <use xlinkHref="#icon-bookmark"></use>
-                          </svg>
-                          <span className="visually-hidden">In bookmarks</span>
-                        </button>
-                      </div>
-                      <div className="place-card__rating rating">
-                        <div className="place-card__stars rating__stars">
-                          <span style={{width: '80%'}}></span>
-                          <span className="visually-hidden">Rating</span>
-                        </div>
-                      </div>
-                      <h2 className="place-card__name">
-                        <a href="#">Wood and stone place</a>
-                      </h2>
-                      <p className="place-card__type">Room</p>
-                    </div>
-                  </article>
                 </div>
               </li>
 
@@ -77,17 +43,16 @@ function FavoritesScreen(): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {CitiesCardData.slice(3).map((offer) => (
-                    <article className="favorites__card place-card" key={offer.id}>
-                      <CitiesCard
-                        title={offer.title}
-                        type={offer.type}
-                        price={offer.price}
-                        previewImage={offer.previewImage}
-                        isPremium={offer.isPremium}
-                        isFavorite={offer.isFavorite}
-                      />
-                    </article>
+                  {OfferCardData.slice(3).map((offer) => (
+                    <OfferCard
+                      key={offer.id}
+                      title={offer.title}
+                      type={offer.type}
+                      price={offer.price}
+                      previewImage={offer.previewImage}
+                      isPremium={offer.isPremium}
+                      isFavorite={offer.isFavorite}
+                    />
                   ))}
                 </div>
               </li>

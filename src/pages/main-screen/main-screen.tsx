@@ -1,15 +1,15 @@
-import CitiesCard from '../../components/cities-card/cities-card';
-import { CitiesCardData } from '../../components/cities-card/cities-card-data';
+import OfferCard from '../../components/offer-card/offer-card';
+import { OfferCardData } from '../../components/offer-card/offer-card-data';
 import NavTabs from '../../components/nav-tabs/nav-tabs';
 import Header from '../../components/header/header';
 import CitiesMap from '../../components/cities-map/cities-map';
 import SortForm from '../../components/sort-form/sort-form';
 
 type MainScreenProps = {
-  citiesCardCount: number;
+  offerCardCount: number;
 }
 
-function MainScreen({citiesCardCount}: MainScreenProps): JSX.Element {
+function MainScreen({offerCardCount}: MainScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -21,21 +21,20 @@ function MainScreen({citiesCardCount}: MainScreenProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{citiesCardCount} places to stay in Amsterdam</b>
+              <b className="places__found">{offerCardCount} places to stay in Amsterdam</b>
               <SortForm />
 
               <div className="cities__places-list places__list tabs__content">
-                {CitiesCardData.map((offer) => (
-                  <article className="cities__card place-card" key={offer.id}>
-                    <CitiesCard
-                      title={offer.title}
-                      type={offer.type}
-                      price={offer.price}
-                      previewImage={offer.previewImage}
-                      isPremium={offer.isPremium}
-                      isFavorite={offer.isFavorite}
-                    />
-                  </article>
+                {OfferCardData.map((offer) => (
+                  <OfferCard
+                    key={offer.id}
+                    title={offer.title}
+                    type={offer.type}
+                    price={offer.price}
+                    previewImage={offer.previewImage}
+                    isPremium={offer.isPremium}
+                    isFavorite={offer.isFavorite}
+                  />
                 ))}
               </div>
 

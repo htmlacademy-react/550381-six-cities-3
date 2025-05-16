@@ -1,4 +1,4 @@
-export type CitiesCardDataType = {
+export type TOfferCardData = {
   id?: string;
   title: string;
   type: string;
@@ -10,7 +10,7 @@ export type CitiesCardDataType = {
   previewImage: string;
 };
 
-export const CitiesCardData: CitiesCardDataType[] = [
+export const OfferCardData: TOfferCardData[] = [
   {
     id: '314769d4-5f2e-4cdb-998e-d7e38c173d34',
     title: 'Wood and stone place',
