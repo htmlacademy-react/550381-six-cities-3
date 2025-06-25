@@ -13,3 +13,10 @@ export const PLACES_OPTIONS: string[] = [
   'Price: high to low',
   'Top rated first'
 ];
+
+export enum AppRoute {
+  Main = '/',
+  Login = '/login',
+  Favorites = '/favorites',
+  Offer = '/offer/:id'
+}
