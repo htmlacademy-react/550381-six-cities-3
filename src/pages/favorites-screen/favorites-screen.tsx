@@ -1,11 +1,9 @@
-import Header from '../../components/header/header';
 import OfferCard from '../../components/offer-card/offer-card';
 import { OfferCardData } from '../../components/offer-card/offer-card-data';
 
 function FavoritesScreen(): JSX.Element {
   return (
-    <div className="page">
-      <Header />
+    <>
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
@@ -65,7 +63,7 @@ function FavoritesScreen(): JSX.Element {
           <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
         </a>
       </footer>
-    </div>
+    </>
   );
 }
 
