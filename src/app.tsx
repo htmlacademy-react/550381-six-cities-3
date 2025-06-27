@@ -20,12 +20,12 @@ function App({offerCardCount}: AppScreenProps): JSX.Element {
           path={AppRoute.Main}
           element={<Layout/>}
         >
-          <Route path={AppRoute.Main} element={<MainScreen offerCardCount={offerCardCount}/>} />
+          <Route index element={<MainScreen offerCardCount={offerCardCount}/>} />
           <Route path={AppRoute.Login} element={<LoginScreen/>} />
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
                 <FavoritesScreen/>
               </PrivateRoute>
             }

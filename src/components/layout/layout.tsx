@@ -1,25 +1,11 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import { AppRoute } from '../../const';
-
-const getLauoutState = (pathname: AppRoute) => {
-  let mainClassName = '',
-    linkClassName = '',
-    shouldRenderUser = true;
-
-  if (pathname === AppRoute.Main) {
-    mainClassName = ' page--gray page--main';
-    linkClassName = ' header__logo-link--active';
-  } else if (pathname === AppRoute.Login) {
-    mainClassName = ' page--gray page--login';
-    shouldRenderUser = false;
-  }
-
-  return {mainClassName, linkClassName, shouldRenderUser};
-};
+import { getLauoutState } from '../../utils';
+import Logo from '../logo/logo';
 
 function Layout() {
   const {pathname} = useLocation();
-  const {mainClassName, linkClassName, shouldRenderUser} = getLauoutState(pathname as AppRoute);
+  const {mainClassName, shouldRenderUser, shouldRenderFooter} = getLauoutState(pathname as AppRoute);
 
   return (
     <div className={ `page${mainClassName}` }>
@@ -27,9 +13,7 @@ function Layout() {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className={ `header__logo-link${linkClassName}` } href='#'>
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-              </a>
+              <Logo pathname={pathname}/>
             </div>
             {
               shouldRenderUser ? (
@@ -56,6 +40,15 @@ function Layout() {
         </div>
       </header>
       <Outlet/>
+      {
+        shouldRenderFooter ? (
+          <footer className="footer container">
+            <a className="footer__logo-link" href="main.html">
+              <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
+            </a>
+          </footer>
+        ) : null
+      }
     </div>
   );
 }
