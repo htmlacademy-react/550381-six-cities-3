@@ -6,7 +6,7 @@ import FavoritesScreen from './pages/favorites-screen/favorites-screen';
 import OfferScreen from './pages/offer-screen/offer-screen';
 import NotFoundScreen from './pages/not-found-screen/not-found-screen';
 import PrivateRoute from './components/private-route/private-route';
-import Layout from './components/layout/layout';
+import Layout from './layout/layout';
 
 type AppScreenProps = {
   offerCardCount: number;
@@ -25,7 +25,7 @@ function App({offerCardCount}: AppScreenProps): JSX.Element {
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
                 <FavoritesScreen/>
               </PrivateRoute>
             }
