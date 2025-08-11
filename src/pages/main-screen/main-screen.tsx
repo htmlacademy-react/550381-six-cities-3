@@ -1,14 +1,16 @@
 import OfferCard from '../../components/offer-card/offer-card';
-import { OfferCardData } from '../../components/offer-card/offer-card-data';
+// import { OfferCardData } from '../../components/offer-card/offer-card-data';
 import NavTabs from '../../components/nav-tabs/nav-tabs';
 import CitiesMap from '../../components/cities-map/cities-map';
 import SortForm from '../../components/sort-form/sort-form';
+import { TOffer } from '../../components/offer-card/types';
 
 type MainScreenProps = {
   offerCardCount: number;
+  offers: TOffer[];
 }
 
-function MainScreen({offerCardCount}: MainScreenProps): JSX.Element {
+function MainScreen({offers, offerCardCount}: MainScreenProps): JSX.Element {
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -21,15 +23,10 @@ function MainScreen({offerCardCount}: MainScreenProps): JSX.Element {
             <SortForm />
 
             <div className="cities__places-list places__list tabs__content">
-              {OfferCardData.map((offer) => (
+              {offers.map((offer) => (
                 <OfferCard
                   key={offer.id}
-                  title={offer.title}
-                  type={offer.type}
-                  price={offer.price}
-                  previewImage={offer.previewImage}
-                  isPremium={offer.isPremium}
-                  isFavorite={offer.isFavorite}
+                  offer={offer}
                 />
               ))}
             </div>

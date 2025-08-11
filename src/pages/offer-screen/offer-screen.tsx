@@ -1,10 +1,34 @@
-function OfferScreen(): JSX.Element {
+import { useParams } from 'react-router-dom';
+import { TOffer } from '../../components/offer-card/types';
+import NotFoundScreen from '../not-found-screen/not-found-screen';
+
+type OfferScreenProps = {
+  offers: TOffer[];
+}
+
+function OfferScreen({offers}: OfferScreenProps): JSX.Element {
+  const {id} = useParams();
+  const currentOffer: TOffer | undefined = offers.find((offer: TOffer) => offer.id === id);
+
+  if (!currentOffer) {
+    return <NotFoundScreen />;
+  }
+
   return (
     <main className="page__main page__main--offer">
       <section className="offer">
         <div className="offer__gallery-container container">
           <div className="offer__gallery">
-            <div className="offer__image-wrapper">
+            {currentOffer.images.map((image, index) => (
+              <div className="offer__image-wrapper" key={index}>
+                <img
+                  className="offer__image"
+                  src={image}
+                  alt="Photo studio"
+                />
+              </div>
+            ))}
+            {/* <div className="offer__image-wrapper">
               <img
                 className="offer__image"
                 src="img/room.jpg"
@@ -45,7 +69,7 @@ function OfferScreen(): JSX.Element {
                 src="img/apartment-01.jpg"
                 alt="Photo studio"
               />
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="offer__container container">

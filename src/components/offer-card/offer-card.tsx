@@ -1,15 +1,21 @@
 import { Link } from 'react-router-dom';
-import { TOfferCardData } from './offer-card-data';
 import Badge from '../badge/badge';
-import { AppRoute } from '../../const';
+// import { AppRoute } from '../../const';
+import { TOffer } from './types';
 
-function OfferCard({title, type, price, previewImage, isPremium, isFavorite}: TOfferCardData): JSX.Element {
+type OfferCardProps = {
+  offer: TOffer;
+}
+
+function OfferCard({offer}: OfferCardProps): JSX.Element {
+  const {id, title, type, price, isFavorite, isPremium, images } = offer;
+
   return (
     <article className="cities__card place-card">
       {isPremium && <Badge text='Premium' className='place-card__mark' />}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={AppRoute.Offer}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
+        <Link to={`/offer/${id}`}>
+          <img className="place-card__image" src={images[0]} width="260" height="200" alt="Place image"/>
         </Link>
       </div>
       <div className="place-card__info">
