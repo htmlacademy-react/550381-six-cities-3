@@ -5,13 +5,26 @@ import { TOffer } from './types';
 
 type OfferCardProps = {
   offer: TOffer;
+  handleHover: (offer?: TOffer) => void;
 }
 
-function OfferCard({offer}: OfferCardProps): JSX.Element {
+function OfferCard({offer, handleHover}: OfferCardProps): JSX.Element {
   const {id, title, type, price, isFavorite, isPremium, images } = offer;
 
+  const handleMouseEnter = () => {
+    handleHover(offer);
+  };
+
+  const handleMouseLeave = () => {
+    handleHover();
+  };
+
   return (
-    <article className="cities__card place-card">
+    <article
+      className="cities__card place-card"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       {isPremium && <Badge text='Premium' className='place-card__mark' />}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${id}`}>

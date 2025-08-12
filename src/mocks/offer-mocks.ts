@@ -23,7 +23,7 @@ export const OfferMocks: TOffer[] = [
     isPremium: false,
     rating: 4,
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-    bedrooms: 3,
+    bedrooms: 4,
     goods: [
       'Heating',
       'Wi-Fi',
