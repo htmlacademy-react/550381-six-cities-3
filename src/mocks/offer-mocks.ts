@@ -25,7 +25,14 @@ export const OfferMocks: TOffer[] = [
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     bedrooms: 3,
     goods: [
-      'Heating'
+      'Heating',
+      'Wi-Fi',
+      'Towels',
+      'Coffee machine',
+      'Baby seat',
+      'Dishwasher',
+      'Cabel TV',
+      'Fridge'
     ],
     host: {
       name: 'Oliver Conner',
@@ -66,7 +73,13 @@ export const OfferMocks: TOffer[] = [
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     bedrooms: 3,
     goods: [
-      'Heating'
+      'Heating',
+      'Wi-Fi',
+      'Coffee machine',
+      'Baby seat',
+      'Kitchen',
+      'Cabel TV',
+      'Fridge'
     ],
     host: {
       name: 'Oliver Conner',
@@ -107,7 +120,13 @@ export const OfferMocks: TOffer[] = [
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     bedrooms: 3,
     goods: [
-      'Heating'
+      'Heating',
+      'Washing machine',
+      'Towels',
+      'Coffee machine',
+      'Baby seat',
+      'Kitchen',
+      'Fridge'
     ],
     host: {
       name: 'Oliver Conner',
@@ -148,7 +167,12 @@ export const OfferMocks: TOffer[] = [
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     bedrooms: 3,
     goods: [
-      'Heating'
+      'Heating',
+      'Wi-Fi',
+      'Washing machine',
+      'Kitchen',
+      'Dishwasher',
+      'Fridge'
     ],
     host: {
       name: 'Oliver Conner',
@@ -157,11 +181,11 @@ export const OfferMocks: TOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/6.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/26.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/27.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/28.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/29.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/30.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/7.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/8.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/9.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/10.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg',
     ],
     maxAdults: 4
   },
@@ -189,7 +213,16 @@ export const OfferMocks: TOffer[] = [
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     bedrooms: 3,
     goods: [
-      'Heating'
+      'Heating',
+      'Wi-Fi',
+      'Washing machine',
+      'Towels',
+      'Coffee machine',
+      'Baby seat',
+      'Kitchen',
+      'Dishwasher',
+      'Cabel TV',
+      'Fridge'
     ],
     host: {
       name: 'Oliver Conner',
@@ -202,8 +235,7 @@ export const OfferMocks: TOffer[] = [
       'https://15.design.htmlacademy.pro/static/hotel/17.jpg',
       'https://15.design.htmlacademy.pro/static/hotel/16.jpg',
       'https://15.design.htmlacademy.pro/static/hotel/15.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/13.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg'
     ],
     maxAdults: 4
   },
