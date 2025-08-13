@@ -15,7 +15,7 @@ type AppScreenProps = {
 }
 
 function App({offers, offerCardCount}: AppScreenProps): JSX.Element {
-  const authorizationStatus = AuthorizationStatus.NoAuth;
+  const authorizationStatus = AuthorizationStatus.Auth;
   return (
     <BrowserRouter>
       <Routes>
@@ -29,7 +29,7 @@ function App({offers, offerCardCount}: AppScreenProps): JSX.Element {
             path={AppRoute.Favorites}
             element={
               <PrivateRoute authorizationStatus={authorizationStatus}>
-                <FavoritesScreen/>
+                <FavoritesScreen offers={offers}/>
               </PrivateRoute>
             }
           />

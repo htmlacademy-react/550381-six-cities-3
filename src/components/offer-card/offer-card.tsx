@@ -1,14 +1,26 @@
 import { Link } from 'react-router-dom';
+import clsx from 'clsx';
 import Badge from '../badge/badge';
-// import { AppRoute } from '../../const';
 import { TOffer } from './types';
+
+type TClassesForType = {
+  container: string;
+  prefix: string;
+}
+
+type TSizeForType = {
+  width: string;
+  height: string;
+}
 
 type OfferCardProps = {
   offer: TOffer;
   handleHover: (offer?: TOffer) => void;
+  classesForType: TClassesForType;
+  sizeForType: TSizeForType;
 }
 
-function OfferCard({offer, handleHover}: OfferCardProps): JSX.Element {
+function OfferCard({offer, handleHover, classesForType, sizeForType}: OfferCardProps): JSX.Element {
   const {id, title, type, price, isFavorite, isPremium, images } = offer;
 
   const handleMouseEnter = () => {
@@ -21,14 +33,20 @@ function OfferCard({offer, handleHover}: OfferCardProps): JSX.Element {
 
   return (
     <article
-      className="cities__card place-card"
+      className={clsx(`${classesForType.prefix}__card place-card`)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {isPremium && <Badge text='Premium' className='place-card__mark' />}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={clsx(`${classesForType.prefix}__image-wrapper place-card__image-wrapper`)}>
         <Link to={`/offer/${id}`}>
-          <img className="place-card__image" src={images[0]} width="260" height="200" alt="Place image"/>
+          <img
+            className="place-card__image"
+            src={images[0]}
+            width={sizeForType.width}
+            height={sizeForType.height}
+            alt="Place image"
+          />
         </Link>
       </div>
       <div className="place-card__info">

@@ -1,7 +1,11 @@
-import OfferCard from '../../components/offer-card/offer-card';
-import { OfferCardData } from '../../components/offer-card/offer-card-data';
+import OfferCardList from '../../components/offer-card-list/offer-card-list';
+import { TOffer } from '../../components/offer-card/types';
 
-function FavoritesScreen(): JSX.Element {
+type FavoritesScreenProps = {
+  offers: TOffer[];
+}
+
+function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
   return (
     <main className="page__main page__main--favorites">
       <div className="page__favorites-container container">
@@ -16,19 +20,7 @@ function FavoritesScreen(): JSX.Element {
                   </a>
                 </div>
               </div>
-              <div className="favorites__places">
-                {OfferCardData.slice(0, 2).map((offer) => (
-                  <OfferCard
-                    key={offer.id}
-                    title={offer.title}
-                    type={offer.type}
-                    price={offer.price}
-                    previewImage={offer.previewImage}
-                    isPremium={offer.isPremium}
-                    isFavorite={offer.isFavorite}
-                  />
-                ))}
-              </div>
+              <OfferCardList offers={offers} type='favoriteScreen'/>
             </li>
 
             <li className="favorites__locations-items">
@@ -39,19 +31,7 @@ function FavoritesScreen(): JSX.Element {
                   </a>
                 </div>
               </div>
-              <div className="favorites__places">
-                {OfferCardData.slice(3).map((offer) => (
-                  <OfferCard
-                    key={offer.id}
-                    title={offer.title}
-                    type={offer.type}
-                    price={offer.price}
-                    previewImage={offer.previewImage}
-                    isPremium={offer.isPremium}
-                    isFavorite={offer.isFavorite}
-                  />
-                ))}
-              </div>
+              <OfferCardList offers={offers} type='favoriteScreen'/>
             </li>
           </ul>
         </section>

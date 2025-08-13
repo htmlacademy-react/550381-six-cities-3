@@ -5,8 +5,8 @@ import NotFoundScreen from '../not-found-screen/not-found-screen';
 import Badge from '../../components/badge/badge';
 import OfferRating from '../../components/offer-rating/offer-rating';
 import OfferGoodsItem from '../../components/offer-goods-item/offer-goods-item';
-import OfferCard from '../../components/offer-card/offer-card';
 import ReviewsForm from '../../components/reviews-form/reviews-form';
+import OfferCardList from '../../components/offer-card-list/offer-card-list';
 
 type OfferScreenProps = {
   offers: TOffer[];
@@ -154,14 +154,7 @@ function OfferScreen({offers, authorizationStatus}: OfferScreenProps): JSX.Eleme
           <h2 className="near-places__title">
             Other places in the neighbourhood
           </h2>
-          <div className="near-places__list places__list">
-            {offers.map((offer) => (
-              <OfferCard
-                key={offer.id}
-                offer={offer}
-              />
-            ))}
-          </div>
+          <OfferCardList offers={offers} type='offerScreen'/>
         </section>
       </div>
     </main>
