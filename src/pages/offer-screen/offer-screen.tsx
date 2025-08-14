@@ -7,6 +7,7 @@ import OfferRating from '../../components/offer-rating/offer-rating';
 import OfferGoodsItem from '../../components/offer-goods-item/offer-goods-item';
 import ReviewsForm from '../../components/reviews-form/reviews-form';
 import OfferCardList from '../../components/offer-card-list/offer-card-list';
+import { AuthorizationStatus } from '../../const';
 
 type OfferScreenProps = {
   offers: TOffer[];
@@ -140,7 +141,7 @@ function OfferScreen({offers, authorizationStatus}: OfferScreenProps): JSX.Eleme
                   </div>
                 </li>
               </ul>
-              {authorizationStatus === 'AUTH' ? (
+              {authorizationStatus === `${AuthorizationStatus.Auth}` ? (
                 <ReviewsForm />
               ) : null}
 
