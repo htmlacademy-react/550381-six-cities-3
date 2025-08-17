@@ -6,33 +6,30 @@ type FavoritesScreenProps = {
 }
 
 function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
+  const savedOffers = offers.filter((offer) => offer.isFavorite);
+  const savedCities:string[] = [];
+  savedOffers.forEach((offer) => {
+    savedCities.push(offer.city.name);
+  });
+
   return (
     <main className="page__main page__main--favorites">
       <div className="page__favorites-container container">
         <section className="favorites">
           <h1 className="favorites__title">Saved listing</h1>
           <ul className="favorites__list">
-            <li className="favorites__locations-items">
-              <div className="favorites__locations locations locations--current">
-                <div className="locations__item">
-                  <a className="locations__item-link" href="#">
-                    <span>Amsterdam</span>
-                  </a>
+            {[...new Set(savedCities)].map((city) => (
+              <li className="favorites__locations-items" key={city}>
+                <div className="favorites__locations locations locations--current">
+                  <div className="locations__item">
+                    <a className="locations__item-link" href="#">
+                      <span>{city}</span>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <OfferCardList offers={offers} type='favoriteScreen'/>
-            </li>
-
-            <li className="favorites__locations-items">
-              <div className="favorites__locations locations locations--current">
-                <div className="locations__item">
-                  <a className="locations__item-link" href="#">
-                    <span>Cologne</span>
-                  </a>
-                </div>
-              </div>
-              <OfferCardList offers={offers} type='favoriteScreen'/>
-            </li>
+                <OfferCardList offers={savedOffers.filter((offer) => offer.city.name === city)} type='favoriteScreen'/>
+              </li>
+            ))}
           </ul>
         </section>
       </div>

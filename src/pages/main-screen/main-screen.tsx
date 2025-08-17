@@ -1,6 +1,6 @@
 import OfferCardList from '../../components/offer-card-list/offer-card-list';
 import NavTabs from '../../components/nav-tabs/nav-tabs';
-import CitiesMap from '../../components/cities-map/cities-map';
+import Map from '../../components/map/map';
 import SortForm from '../../components/sort-form/sort-form';
 import { TOffer } from '../../components/offer-card/types';
 
@@ -26,7 +26,7 @@ function MainScreen({offers, offerCardCount}: MainScreenProps): JSX.Element {
 
           </section>
           <div className="cities__right-section">
-            <CitiesMap />
+            <Map type='main' />
           </div>
         </div>
       </div>

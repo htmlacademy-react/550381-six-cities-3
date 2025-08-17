@@ -1,6 +1,9 @@
-import { Fragment, ReactEventHandler, useState } from 'react';
+import { Fragment, useState, ChangeEvent } from 'react';
 
-type TChangeReviewHandler = ReactEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+const CHARACTERS = {
+  min: 50,
+  max: 300
+};
 
 const rating = [
   {value: 5, label: 'perfect'},
@@ -13,8 +16,8 @@ const rating = [
 function ReviewsForm(): JSX.Element {
   const [review, setReview] = useState({rating: 0, review: ''});
 
-  const changeReviewHandler: TChangeReviewHandler = (evt) => {
-    const {name, value} = evt.currentTarget;
+  const changeReviewHandler = (evt:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const {name, value} = evt.target;
     setReview({...review, [name]: value});
   };
 
@@ -66,12 +69,12 @@ function ReviewsForm(): JSX.Element {
           To submit review please make sure to set{' '}
           <span className="reviews__star">rating</span> and describe
           your stay with at least{' '}
-          <b className="reviews__text-amount">50 characters</b>.
+          <b className="reviews__text-amount">{CHARACTERS.min} characters</b>.
         </p>
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={review.rating === 0 || review.review.length < 50}
+          disabled={review.rating === 0 || review.review.length < CHARACTERS.min || review.review.length > CHARACTERS.max}
         >
           Submit
         </button>

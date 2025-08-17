@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import { useParams } from 'react-router-dom';
 import { TOffer } from '../../components/offer-card/types';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
@@ -8,10 +7,11 @@ import OfferGoodsItem from '../../components/offer-goods-item/offer-goods-item';
 import ReviewsForm from '../../components/reviews-form/reviews-form';
 import OfferCardList from '../../components/offer-card-list/offer-card-list';
 import { AuthorizationStatus } from '../../const';
+import Map from '../../components/map/map';
 
 type OfferScreenProps = {
   offers: TOffer[];
-  authorizationStatus:string;
+  authorizationStatus:AuthorizationStatus;
 }
 
 function OfferScreen({offers, authorizationStatus}: OfferScreenProps): JSX.Element {
@@ -24,13 +24,15 @@ function OfferScreen({offers, authorizationStatus}: OfferScreenProps): JSX.Eleme
   const maxAdultsTitle = `Max ${currentOffer.maxAdults} ${currentOffer.maxAdults > 1 ? 'adults' : 'adult'}`;
   const bedroomsTitle = `${currentOffer.bedrooms} ${currentOffer.bedrooms > 1 ? 'Bedrooms' : 'Bedrooms'}`;
 
+  const ratingStyle = currentOffer.rating * 100 / 5;
+
   return (
     <main className="page__main page__main--offer">
       <section className="offer">
         <div className="offer__gallery-container container">
           <div className="offer__gallery">
             {currentOffer.images.map((image) => (
-              <div className="offer__image-wrapper" key={uuidv4()}>
+              <div className="offer__image-wrapper" key={image}>
                 <img
                   className="offer__image"
                   src={image}
@@ -54,7 +56,7 @@ function OfferScreen({offers, authorizationStatus}: OfferScreenProps): JSX.Eleme
                 <span className="visually-hidden">To bookmarks</span>
               </button>
             </div>
-            <OfferRating rating={currentOffer.rating}/>
+            <OfferRating rating={currentOffer.rating} ratingStyle={ratingStyle}/>
 
             <ul className="offer__features">
               <li className="offer__feature offer__feature--entire">
@@ -74,7 +76,7 @@ function OfferScreen({offers, authorizationStatus}: OfferScreenProps): JSX.Eleme
             <div className="offer__inside">
               <h2 className="offer__inside-title">What&apos;s inside</h2>
               <ul className="offer__inside-list">
-                {currentOffer.goods.map((good) => (<OfferGoodsItem good={good} key={uuidv4()}/>))}
+                {currentOffer.goods.map((good) => (<OfferGoodsItem good={good} key={good}/>))}
               </ul>
             </div>
             <div className="offer__host">
@@ -126,7 +128,7 @@ function OfferScreen({offers, authorizationStatus}: OfferScreenProps): JSX.Eleme
                   <div className="reviews__info">
                     <div className="reviews__rating rating">
                       <div className="reviews__stars rating__stars">
-                        <span style={{ width: '80%' }}></span>
+                        <span style={{ width: `${ratingStyle}%` }}></span>
                         <span className="visually-hidden">Rating</span>
                       </div>
                     </div>
@@ -141,14 +143,11 @@ function OfferScreen({offers, authorizationStatus}: OfferScreenProps): JSX.Eleme
                   </div>
                 </li>
               </ul>
-              {authorizationStatus === `${AuthorizationStatus.Auth}` ? (
-                <ReviewsForm />
-              ) : null}
-
+              {authorizationStatus === AuthorizationStatus.Auth && <ReviewsForm />}
             </section>
           </div>
         </div>
-        <section className="offer__map map"></section>
+        <Map type='offer'/>
       </section>
       <div className="container">
         <section className="near-places places">
