@@ -1,58 +1,35 @@
-import OfferCard from '../../components/offer-card/offer-card';
-import { OfferCardData } from '../../components/offer-card/offer-card-data';
+import OfferCardList from '../../components/offer-card-list/offer-card-list';
+import { TOffer } from '../../components/offer-card/types';
 
-function FavoritesScreen(): JSX.Element {
+type FavoritesScreenProps = {
+  offers: TOffer[];
+}
+
+function FavoritesScreen({offers}: FavoritesScreenProps): JSX.Element {
+  const savedOffers = offers.filter((offer) => offer.isFavorite);
+  const savedCities:string[] = [];
+  savedOffers.forEach((offer) => {
+    savedCities.push(offer.city.name);
+  });
+
   return (
     <main className="page__main page__main--favorites">
       <div className="page__favorites-container container">
         <section className="favorites">
           <h1 className="favorites__title">Saved listing</h1>
           <ul className="favorites__list">
-            <li className="favorites__locations-items">
-              <div className="favorites__locations locations locations--current">
-                <div className="locations__item">
-                  <a className="locations__item-link" href="#">
-                    <span>Amsterdam</span>
-                  </a>
+            {[...new Set(savedCities)].map((city) => (
+              <li className="favorites__locations-items" key={city}>
+                <div className="favorites__locations locations locations--current">
+                  <div className="locations__item">
+                    <a className="locations__item-link" href="#">
+                      <span>{city}</span>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <div className="favorites__places">
-                {OfferCardData.slice(0, 2).map((offer) => (
-                  <OfferCard
-                    key={offer.id}
-                    title={offer.title}
-                    type={offer.type}
-                    price={offer.price}
-                    previewImage={offer.previewImage}
-                    isPremium={offer.isPremium}
-                    isFavorite={offer.isFavorite}
-                  />
-                ))}
-              </div>
-            </li>
-
-            <li className="favorites__locations-items">
-              <div className="favorites__locations locations locations--current">
-                <div className="locations__item">
-                  <a className="locations__item-link" href="#">
-                    <span>Cologne</span>
-                  </a>
-                </div>
-              </div>
-              <div className="favorites__places">
-                {OfferCardData.slice(3).map((offer) => (
-                  <OfferCard
-                    key={offer.id}
-                    title={offer.title}
-                    type={offer.type}
-                    price={offer.price}
-                    previewImage={offer.previewImage}
-                    isPremium={offer.isPremium}
-                    isFavorite={offer.isFavorite}
-                  />
-                ))}
-              </div>
-            </li>
+                <OfferCardList offers={savedOffers.filter((offer) => offer.city.name === city)} type='favoriteScreen'/>
+              </li>
+            ))}
           </ul>
         </section>
       </div>

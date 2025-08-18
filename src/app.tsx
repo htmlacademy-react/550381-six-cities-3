@@ -7,12 +7,15 @@ import OfferScreen from './pages/offer-screen/offer-screen';
 import NotFoundScreen from './pages/not-found-screen/not-found-screen';
 import PrivateRoute from './components/private-route/private-route';
 import Layout from './layout/layout';
+import { TOffer } from './components/offer-card/types';
 
 type AppScreenProps = {
   offerCardCount: number;
+  offers: TOffer[];
 }
 
-function App({offerCardCount}: AppScreenProps): JSX.Element {
+function App({offers, offerCardCount}: AppScreenProps): JSX.Element {
+  const authorizationStatus = AuthorizationStatus.Auth;
   return (
     <BrowserRouter>
       <Routes>
@@ -20,17 +23,17 @@ function App({offerCardCount}: AppScreenProps): JSX.Element {
           path={AppRoute.Main}
           element={<Layout/>}
         >
-          <Route index element={<MainScreen offerCardCount={offerCardCount}/>} />
+          <Route index element={<MainScreen offers={offers} offerCardCount={offerCardCount}/>} />
           <Route path={AppRoute.Login} element={<LoginScreen/>} />
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-                <FavoritesScreen/>
+              <PrivateRoute authorizationStatus={authorizationStatus}>
+                <FavoritesScreen offers={offers}/>
               </PrivateRoute>
             }
           />
-          <Route path={AppRoute.Offer} element={<OfferScreen/>} />
+          <Route path={AppRoute.Offer} element={<OfferScreen offers={offers} authorizationStatus={authorizationStatus}/>} />
           <Route path='*' element={<NotFoundScreen/>} />
         </Route>
       </Routes>
