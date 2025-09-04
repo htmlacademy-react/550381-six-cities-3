@@ -1,11 +1,10 @@
 import OfferCard from '../offer-card/offer-card';
 import { TOffer } from '../offer-card/types';
-import { useState } from 'react';
-import { Nullable } from 'vitest';
 
 type OfferCardListProps = {
   offers: TOffer[];
   type: 'mainScreen' | 'offerScreen' | 'favoriteScreen';
+  handleHover?: (offer?: TOffer) => void;
 }
 
 const ClassesList = {
@@ -38,12 +37,7 @@ const Sizes = {
   }
 };
 
-function OfferCardList({offers, type}: OfferCardListProps): JSX.Element {
-  const [activeOffer, setActiveOffer] = useState<Nullable<TOffer>>(null);
-
-  const handleOfferHover = (offer?: TOffer) => {
-    setActiveOffer(offer || null);
-  };
+function OfferCardList({offers, type, handleHover}: OfferCardListProps): JSX.Element {
 
   const classesForType = ClassesList[type];
   const sizeForType = Sizes[type];
@@ -54,7 +48,7 @@ function OfferCardList({offers, type}: OfferCardListProps): JSX.Element {
         <OfferCard
           key={offer.id}
           offer={offer}
-          handleHover={handleOfferHover}
+          handleHover={handleHover}
           classesForType = {classesForType}
           sizeForType = {sizeForType}
         />

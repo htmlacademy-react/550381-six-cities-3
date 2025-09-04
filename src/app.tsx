@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from './const';
 import MainScreen from './pages/main-screen/main-screen';
@@ -8,6 +9,7 @@ import NotFoundScreen from './pages/not-found-screen/not-found-screen';
 import PrivateRoute from './components/private-route/private-route';
 import Layout from './layout/layout';
 import { TOffer } from './components/offer-card/types';
+// import { Nullable } from 'vitest';
 
 type AppScreenProps = {
   offerCardCount: number;
@@ -15,6 +17,12 @@ type AppScreenProps = {
 }
 
 function App({offers, offerCardCount}: AppScreenProps): JSX.Element {
+  const [activeOffer, setActiveOffer] = useState<TOffer | undefined>(undefined);
+
+  const handleOfferHover = (offer?: TOffer) => {
+    setActiveOffer(offer);
+  };
+
   const authorizationStatus = AuthorizationStatus.Auth;
   return (
     <BrowserRouter>
@@ -23,7 +31,7 @@ function App({offers, offerCardCount}: AppScreenProps): JSX.Element {
           path={AppRoute.Main}
           element={<Layout/>}
         >
-          <Route index element={<MainScreen offers={offers} offerCardCount={offerCardCount}/>} />
+          <Route index element={<MainScreen offers={offers} offerCardCount={offerCardCount} handleHover={handleOfferHover} activeOffer={activeOffer}/>} />
           <Route path={AppRoute.Login} element={<LoginScreen/>} />
           <Route
             path={AppRoute.Favorites}
