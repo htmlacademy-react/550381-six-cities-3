@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useEffect, useRef } from 'react';
-import leaflet from 'leaflet';
+import leaflet, { layerGroup } from 'leaflet';
 import { TCity, TOffer } from '../offer-card/types';
 import { URL_MARKER_DEFAULT, URL_MARKER_ACTIVE } from '../../const';
 
@@ -21,14 +21,14 @@ const classes = {
 
 const defaultMarkerIcon = leaflet.icon({
   iconUrl: URL_MARKER_DEFAULT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconSize: [27, 39],
+  iconAnchor: [13.5, 39]
 });
 
 const activeMarkerIcon = leaflet.icon({
   iconUrl: URL_MARKER_ACTIVE,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconSize: [27, 39],
+  iconAnchor: [13.5, 39]
 });
 
 function Map({type, city, offers, activeOffer}: MapProps): JSX.Element {
@@ -36,8 +36,9 @@ function Map({type, city, offers, activeOffer}: MapProps): JSX.Element {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const map = useMap({location: city.location, containerRef: mapContainerRef});
 
-  useEffect((): void => {
+  useEffect(() => {
     if (map) {
+      const markerLayer = layerGroup().addTo(map);
       offers.forEach((offer): void => {
         leaflet
           .marker({
@@ -45,9 +46,11 @@ function Map({type, city, offers, activeOffer}: MapProps): JSX.Element {
             lng: offer.location.longitude,
           }, {
             icon: offer.id === activeOffer?.id ? activeMarkerIcon : defaultMarkerIcon,
-          }).addTo(map);
+          }).addTo(markerLayer);
       });
-
+      return () => {
+        map.removeLayer(markerLayer);
+      };
     }
   }, [activeOffer, map, offers]);
 
