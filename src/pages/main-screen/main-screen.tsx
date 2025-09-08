@@ -7,9 +7,12 @@ import { TOffer } from '../../components/offer-card/types';
 type MainScreenProps = {
   offerCardCount: number;
   offers: TOffer[];
+  activeOffer: TOffer | undefined;
+  handleHover?: (offer?: TOffer) => void;
 }
 
-function MainScreen({offers, offerCardCount}: MainScreenProps): JSX.Element {
+function MainScreen({offers, offerCardCount, handleHover, activeOffer}: MainScreenProps): JSX.Element {
+  const currentCity = offers[0].city;
 
   return (
     <main className="page__main page__main--index">
@@ -22,11 +25,11 @@ function MainScreen({offers, offerCardCount}: MainScreenProps): JSX.Element {
             <b className="places__found">{offerCardCount} places to stay in Amsterdam</b>
             <SortForm />
 
-            <OfferCardList offers={offers} type='mainScreen'/>
+            <OfferCardList offers={offers} type='mainScreen' handleHover={handleHover}/>
 
           </section>
           <div className="cities__right-section">
-            <Map type='main' />
+            <Map type='main' activeOffer={activeOffer} offers={offers} city={currentCity}/>
           </div>
         </div>
       </div>

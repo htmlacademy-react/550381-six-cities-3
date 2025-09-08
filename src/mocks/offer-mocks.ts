@@ -7,16 +7,16 @@ export const OfferMocks: TOffer[] = [
     type: 'room',
     price: 120,
     city: {
-      name: 'Paris',
+      name: 'Amsterdam',
       location: {
-        latitude: 52.35514938496378,
-        longitude: 4.673877537499948,
-        zoom: 8
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
+        zoom: 10
       }
     },
     location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
       zoom: 8
     },
     isFavorite: true,
@@ -63,8 +63,8 @@ export const OfferMocks: TOffer[] = [
       }
     },
     location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
       zoom: 8
     },
     isFavorite: true,
@@ -102,7 +102,7 @@ export const OfferMocks: TOffer[] = [
     type: 'hotel',
     price: 217,
     city: {
-      name: 'Paris',
+      name: 'Amsterdam',
       location: {
         latitude: 52.35514938496378,
         longitude: 4.673877537499948,
@@ -110,8 +110,8 @@ export const OfferMocks: TOffer[] = [
       }
     },
     location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
       zoom: 8
     },
     isFavorite: true,
@@ -157,8 +157,8 @@ export const OfferMocks: TOffer[] = [
       }
     },
     location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
       zoom: 8
     },
     isFavorite: false,
@@ -188,55 +188,5 @@ export const OfferMocks: TOffer[] = [
       'https://15.design.htmlacademy.pro/static/hotel/11.jpg',
     ],
     maxAdults: 4
-  },
-  {
-    id: 'aafb48da-82dd-421e-8167-a44abb2dcf88',
-    title: 'Canal View Prinsengracht',
-    type: 'apartment',
-    price: 244,
-    city: {
-      name: 'Amsterdam',
-      location: {
-        latitude: 52.35514938496378,
-        longitude: 4.673877537499948,
-        zoom: 8
-      }
-    },
-    location: {
-      latitude: 52.35514938496378,
-      longitude: 4.673877537499948,
-      zoom: 8
-    },
-    isFavorite: false,
-    isPremium: true,
-    rating: 4,
-    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-    bedrooms: 3,
-    goods: [
-      'Heating',
-      'Wi-Fi',
-      'Washing machine',
-      'Towels',
-      'Coffee machine',
-      'Baby seat',
-      'Kitchen',
-      'Dishwasher',
-      'Cabel TV',
-      'Fridge'
-    ],
-    host: {
-      name: 'Oliver Conner',
-      avatarUrl: 'https://url-to-image/image.png',
-      isPro: false
-    },
-    images: [
-      'https://15.design.htmlacademy.pro/static/hotel/19.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/18.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/17.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/16.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/15.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/14.jpg'
-    ],
-    maxAdults: 4
-  },
+  }
 ];
