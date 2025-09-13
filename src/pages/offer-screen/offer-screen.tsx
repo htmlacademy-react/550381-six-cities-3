@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { TOffer } from '../../components/offer-card/types';
+import { TReview } from '../../components/review/types';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import Badge from '../../components/badge/badge';
 import OfferRating from '../../components/offer-rating/offer-rating';
@@ -8,14 +9,18 @@ import ReviewsForm from '../../components/reviews-form/reviews-form';
 import OfferCardList from '../../components/offer-card-list/offer-card-list';
 import { AuthorizationStatus } from '../../const';
 import Map from '../../components/map/map';
+import ReviewsList from '../../components/reviews-list/reviews-list';
+
 
 type OfferScreenProps = {
   offers: TOffer[];
+  reviews: TReview[];
   authorizationStatus:AuthorizationStatus;
 }
 
-function OfferScreen({offers, authorizationStatus}: OfferScreenProps): JSX.Element {
+function OfferScreen({offers, authorizationStatus, reviews}: OfferScreenProps): JSX.Element {
   const {id} = useParams();
+  const currentCity = offers[0].city;
   const currentOffer: TOffer | undefined = offers.find((offer: TOffer) => offer.id === id);
 
   if (!currentOffer) {
@@ -25,6 +30,9 @@ function OfferScreen({offers, authorizationStatus}: OfferScreenProps): JSX.Eleme
   const bedroomsTitle = `${currentOffer.bedrooms} ${currentOffer.bedrooms > 1 ? 'Bedrooms' : 'Bedrooms'}`;
 
   const ratingStyle = currentOffer.rating * 100 / 5;
+
+  const nearOffers: TOffer[] = offers.slice(1);
+  const nearOffersPlusCurrent: TOffer[] = [currentOffer, ...nearOffers];
 
   return (
     <main className="page__main page__main--offer">
@@ -109,52 +117,21 @@ function OfferScreen({offers, authorizationStatus}: OfferScreenProps): JSX.Eleme
             </div>
             <section className="offer__reviews reviews">
               <h2 className="reviews__title">
-                Reviews &middot; <span className="reviews__amount">1</span>
+                Reviews &middot; <span className="reviews__amount">{reviews.length}</span>
               </h2>
-              <ul className="reviews__list">
-                <li className="reviews__item">
-                  <div className="reviews__user user">
-                    <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                      <img
-                        className="reviews__avatar user__avatar"
-                        src="img/avatar-max.jpg"
-                        width="54"
-                        height="54"
-                        alt="Reviews avatar"
-                      />
-                    </div>
-                    <span className="reviews__user-name">Max</span>
-                  </div>
-                  <div className="reviews__info">
-                    <div className="reviews__rating rating">
-                      <div className="reviews__stars rating__stars">
-                        <span style={{ width: `${ratingStyle}%` }}></span>
-                        <span className="visually-hidden">Rating</span>
-                      </div>
-                    </div>
-                    <p className="reviews__text">
-                      A quiet cozy and picturesque that hides behind a a river
-                      by the unique lightness of Amsterdam. The building is
-                      green and from 18th century.
-                    </p>
-                    <time className="reviews__time" dateTime="2019-04-24">
-                      April 2019
-                    </time>
-                  </div>
-                </li>
-              </ul>
+              <ReviewsList reviews={reviews}/>
               {authorizationStatus === AuthorizationStatus.Auth && <ReviewsForm />}
             </section>
           </div>
         </div>
-        <Map type='offer'/>
+        <Map type='offer' activeOffer={currentOffer} offers={nearOffersPlusCurrent} city={currentCity}/>
       </section>
       <div className="container">
         <section className="near-places places">
           <h2 className="near-places__title">
             Other places in the neighbourhood
           </h2>
-          <OfferCardList offers={offers} type='offerScreen'/>
+          <OfferCardList offers={nearOffers} type='offerScreen'/>
         </section>
       </div>
     </main>

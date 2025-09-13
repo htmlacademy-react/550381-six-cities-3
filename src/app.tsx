@@ -9,14 +9,15 @@ import NotFoundScreen from './pages/not-found-screen/not-found-screen';
 import PrivateRoute from './components/private-route/private-route';
 import Layout from './layout/layout';
 import { TOffer } from './components/offer-card/types';
-// import { Nullable } from 'vitest';
+import { TReview } from './components/review/types';
 
 type AppScreenProps = {
   offerCardCount: number;
   offers: TOffer[];
+  reviews: TReview[];
 }
 
-function App({offers, offerCardCount}: AppScreenProps): JSX.Element {
+function App({offers, offerCardCount, reviews}: AppScreenProps): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<TOffer | undefined>(undefined);
 
   const handleOfferHover = (offer?: TOffer) => {
@@ -31,7 +32,15 @@ function App({offers, offerCardCount}: AppScreenProps): JSX.Element {
           path={AppRoute.Main}
           element={<Layout/>}
         >
-          <Route index element={<MainScreen offers={offers} offerCardCount={offerCardCount} handleHover={handleOfferHover} activeOffer={activeOffer}/>} />
+          <Route index element={
+            <MainScreen
+              offers={offers}
+              offerCardCount={offerCardCount}
+              handleHover={handleOfferHover}
+              activeOffer={activeOffer}
+            />
+          }
+          />
           <Route path={AppRoute.Login} element={<LoginScreen/>} />
           <Route
             path={AppRoute.Favorites}
@@ -41,7 +50,14 @@ function App({offers, offerCardCount}: AppScreenProps): JSX.Element {
               </PrivateRoute>
             }
           />
-          <Route path={AppRoute.Offer} element={<OfferScreen offers={offers} authorizationStatus={authorizationStatus}/>} />
+          <Route path={AppRoute.Offer} element={
+            <OfferScreen
+              offers={offers}
+              authorizationStatus={authorizationStatus}
+              reviews={reviews}
+            />
+          }
+          />
           <Route path='*' element={<NotFoundScreen/>} />
         </Route>
       </Routes>
